@@ -9,9 +9,13 @@ Why the merge is essential? This is essential because in iOS 13, Cordova WebView
 
 # Install
 
-Add the plugin to your Cordova project:
+Add the original plugin to your Cordova project:
 
 `cordova plugin add cordova-plugin-callkit`
+
+Or add the modification to you Cordova project:
+
+`https://github.com/Qvadis/cordova-plugin-callkit.git`
 
 # API Guide
 
