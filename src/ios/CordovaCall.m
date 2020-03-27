@@ -588,9 +588,11 @@ BOOL enableDTMF = NO;
     [results setObject:data forKey:@"extra"];
     
     @try {
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        // NSError* error;
+        // NSDictionary* json = [NSJSONSerialization JSONObjectWithData:[data dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         
+		NSDictionary* json = data;
+
         NSObject* caller = [json objectForKey:@"Caller"];
         NSArray* args = [NSArray arrayWithObjects:[caller valueForKey:@"Username"], [caller valueForKey:@"ConnectionId"], nil];
         
