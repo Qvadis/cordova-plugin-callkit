@@ -81,12 +81,12 @@ public class CordovaCall extends CordovaPlugin {
                   .build();
           tm.registerPhoneAccount(phoneAccount);
         }
-        /*if(android.os.Build.VERSION.SDK_INT >= 23) {
+        if(android.os.Build.VERSION.SDK_INT >= 23) {
           phoneAccount = new PhoneAccount.Builder(handle, appName)
                    .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
                    .build();
           tm.registerPhoneAccount(phoneAccount);          
-        }*/
+        }
         callbackContextMap.put("answer",new ArrayList<CallbackContext>());
         callbackContextMap.put("reject",new ArrayList<CallbackContext>());
         callbackContextMap.put("hangup",new ArrayList<CallbackContext>());
@@ -192,13 +192,13 @@ public class CordovaCall extends CordovaPlugin {
                   .build();
               tm.registerPhoneAccount(phoneAccount);
             }
-            /*if(android.os.Build.VERSION.SDK_INT >= 23) {
+            if(android.os.Build.VERSION.SDK_INT >= 23) {
               phoneAccount = new PhoneAccount.Builder(handle, appName)
                    .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
                    .build();
               tm.registerPhoneAccount(phoneAccount);
-            }*/
-            this.callbackContext.success("BAG App Name Changed Successfully");
+            }
+            this.callbackContext.success("App Name Changed Successfully");
             return true;
         } else if (action.equals("setIcon")) {
             String iconName = args.getString(0);
