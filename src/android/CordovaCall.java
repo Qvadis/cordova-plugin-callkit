@@ -181,7 +181,7 @@ public class CordovaCall extends CordovaPlugin {
         } else if (action.equals("registerEvent")) {
             String eventType = args.getString(0);
             ArrayList<CallbackContext> callbackContextList = callbackContextMap.get(eventType);
-			if (callbackContextList) {
+			if (callbackContextList != null) {
             	callbackContextList.add(this.callbackContext);
 			}
             return true;
