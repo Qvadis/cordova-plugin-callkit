@@ -269,10 +269,13 @@ public class CordovaCall extends CordovaPlugin {
 
     private void receiveCall() {
         Bundle callInfo = new Bundle();
+		if (from == null) {
+			from = "Qvadis";
+		}
         callInfo.putString("from",from);
         tm.addNewIncomingCall(handle, callInfo);
         permissionCounter = 0;
-        this.callbackContext.success("Incoming call successful");
+        this.callbackContext.success("Incoming call successful " + from);
     }
 
     private void sendCall() {
