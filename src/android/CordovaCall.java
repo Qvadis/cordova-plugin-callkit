@@ -93,9 +93,6 @@ public class CordovaCall extends CordovaPlugin {
         callbackContextMap.put("sendCall",new ArrayList<CallbackContext>());
         callbackContextMap.put("receiveCall",new ArrayList<CallbackContext>());
 
-		System.out.println("BAG capabilities ");
-		System.out.println(PhoneAccount.getCapabilities());
-
         instance = this;
     }
 
@@ -184,7 +181,9 @@ public class CordovaCall extends CordovaPlugin {
         } else if (action.equals("registerEvent")) {
             String eventType = args.getString(0);
             ArrayList<CallbackContext> callbackContextList = callbackContextMap.get(eventType);
-            callbackContextList.add(this.callbackContext);
+			if (callbackContextList) {
+            	callbackContextList.add(this.callbackContext);
+			}
             return true;
         } else if (action.equals("setAppName")) {
             String appName = args.getString(0);
@@ -201,7 +200,7 @@ public class CordovaCall extends CordovaPlugin {
                    .build();
               tm.registerPhoneAccount(phoneAccount);
             }
-            this.callbackContext.success("App Name Changed Successfully");
+            this.callbackContext.success("App Name Changed Successfully " + PhoneAccount.getCapabilities());
             return true;
         } else if (action.equals("setIcon")) {
             String iconName = args.getString(0);
