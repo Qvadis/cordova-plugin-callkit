@@ -93,6 +93,9 @@ public class CordovaCall extends CordovaPlugin {
         callbackContextMap.put("sendCall",new ArrayList<CallbackContext>());
         callbackContextMap.put("receiveCall",new ArrayList<CallbackContext>());
 
+		System.out.println("BAG capabilities ");
+		System.out.println(PhoneAccount.getCapabilities());
+
         instance = this;
     }
 
