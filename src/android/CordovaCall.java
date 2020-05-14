@@ -200,8 +200,7 @@ public class CordovaCall extends CordovaPlugin {
                    .build();
               tm.registerPhoneAccount(phoneAccount);
             }
-			String phoneAccountCap = new PhoneAccount.getCapabilities();
-            this.callbackContext.success("App Name Changed Successfully " + phoneAccountCap);
+            this.callbackContext.success("App Name Changed Successfully " + phoneAccount.getCapabilities());
             return true;
         } else if (action.equals("setIcon")) {
             String iconName = args.getString(0);
