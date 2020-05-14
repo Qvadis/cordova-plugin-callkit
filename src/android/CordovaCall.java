@@ -83,7 +83,7 @@ public class CordovaCall extends CordovaPlugin {
         }
         if(android.os.Build.VERSION.SDK_INT >= 23) {
           phoneAccount = new PhoneAccount.Builder(handle, appName)
-                   .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                   .setCapabilities(PhoneAccount.CAPABILITY_CONNECTION_MANAGER)
                    .build();
           tm.registerPhoneAccount(phoneAccount);          
         }
@@ -196,7 +196,7 @@ public class CordovaCall extends CordovaPlugin {
             }
             if(android.os.Build.VERSION.SDK_INT >= 23) {
               phoneAccount = new PhoneAccount.Builder(handle, appName)
-                   .setCapabilities(PhoneAccount.CAPABILITY_CALL_PROVIDER)
+                   .setCapabilities(PhoneAccount.CAPABILITY_CONNECTION_MANAGER)
                    .build();
               tm.registerPhoneAccount(phoneAccount);
             }
