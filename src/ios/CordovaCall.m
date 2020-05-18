@@ -489,7 +489,7 @@ BOOL enableDTMF = NO;
 - (void)provider:(CXProvider *)provider performEndCallAction:(CXEndCallAction *)action
 {
     NSArray<CXCall *> *calls = self.callController.callObserver.calls;
-    if([calls count] == 1) {
+    if([calls count] >= 1) {
         if(calls[0].hasConnected) {
             for (id callbackId in callbackIds[@"hangup"]) {
                 CDVPluginResult* pluginResult = nil;
