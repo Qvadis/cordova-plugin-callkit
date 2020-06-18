@@ -115,7 +115,6 @@ public class CordovaCall extends CordovaPlugin {
                 }
             } else {
                 from = args.getString(0);
-				conn.setCallerDisplayName(from);
                 permissionCounter = 2;
                 pendingAction = "receiveCall";
                 this.checkCallPermission();
