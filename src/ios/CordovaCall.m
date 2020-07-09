@@ -10,6 +10,7 @@ BOOL hasVideo = NO;
 NSString* appName;
 NSString* ringtone;
 NSString* icon;
+NSUUID* uuid;
 BOOL includeInRecents = NO;
 NSMutableDictionary *callbackIds;
 NSDictionary* pendingCallFromRecents;
@@ -173,7 +174,6 @@ BOOL enableDTMF = NO;
 - (void)receiveCall:(CDVInvokedUrlCommand*)command
 {
     BOOL hasId = ![[command.arguments objectAtIndex:1] isEqual:[NSNull null]];
-    CDVPluginResult* pluginResult = nil;
     NSString* callName = [command.arguments objectAtIndex:0];
     NSString* callId = hasId?[command.arguments objectAtIndex:1]:callName;
     NSUUID *callUUID = [[NSUUID alloc] init];
@@ -193,6 +193,8 @@ BOOL enableDTMF = NO;
         callUpdate.supportsUngrouping = NO;
         callUpdate.supportsHolding = NO;
         callUpdate.supportsDTMF = enableDTMF;
+        
+        uuid = callUUID;
 
         [self.provider reportNewIncomingCallWithUUID:callUUID update:callUpdate completion:^(NSError * _Nullable error) {
             if(error == nil) {
@@ -262,9 +264,9 @@ BOOL enableDTMF = NO;
     CDVPluginResult* pluginResult = nil;
     NSArray<CXCall *> *calls = self.callController.callObserver.calls;
 
-    if([calls count] == 1) {
+    if([calls count] >= 1) {
         //[self.provider reportCallWithUUID:calls[0].UUID endedAtDate:nil reason:CXCallEndedReasonRemoteEnded];
-        CXEndCallAction *endCallAction = [[CXEndCallAction alloc] initWithCallUUID:calls[0].UUID];
+        CXEndCallAction *endCallAction = [[CXEndCallAction alloc] initWithCallUUID:uuid];
         CXTransaction *transaction = [[CXTransaction alloc] initWithAction:endCallAction];
         [self.callController requestTransaction:transaction completion:^(NSError * _Nullable error) {
             if (error == nil) {
